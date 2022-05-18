@@ -20,6 +20,7 @@ function App() {
   }
 
   const deleteItem = (id) => {
+    showAlert(true, "Item deleted", "danger")
     const newList = list.filter((item) => item.id !== id);
     setList(newList);
   }
