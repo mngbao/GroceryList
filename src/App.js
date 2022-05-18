@@ -9,6 +9,16 @@ function App() {
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
 
+  const getLocalStorage = () => {
+    let list = localStorage.getItem('list');
+    if (list) {
+      return JSON.parse(localStorage.getItem('list'))
+    }
+    else {
+      return []
+    }
+  }
+
   const deleteItem = (id) => {
     const newList = list.filter((item) => item.id !== id);
     setList(newList);
