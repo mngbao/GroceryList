@@ -4,7 +4,7 @@ import Alert from './Alert'
 
 function App() {
   const [name, setName] = useState('')
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage());
   const [isEditting, setIsEditting] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
