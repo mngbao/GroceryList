@@ -1,14 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import List from './List'
 import Alert from './Alert'
 
 function App() {
-  const [name, setName] = useState('')
-  const [list, setList] = useState(getLocalStorage());
-  const [isEditting, setIsEditting] = useState(false);
-  const [editID, setEditID] = useState(null);
-  const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
-
   const getLocalStorage = () => {
     let list = localStorage.getItem('list');
     if (list) {
@@ -18,6 +12,15 @@ function App() {
       return []
     }
   }
+
+
+  const [name, setName] = useState('')
+  const [list, setList] = useState(getLocalStorage());
+  const [isEditting, setIsEditting] = useState(false);
+  const [editID, setEditID] = useState(null);
+  const [alert, setAlert] = useState({ show: false, msg: '', type: '' });
+
+
 
   const deleteItem = (id) => {
     showAlert(true, "Item deleted", "danger")
@@ -69,7 +72,9 @@ function App() {
     }
   }
 
-
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list))
+  }, [list]);
 
   return (
     <section className="section-center">
